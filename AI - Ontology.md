@@ -1,6 +1,7 @@
 # AI Ontology
 
 ## Table of Contents
+
 1. [Generative AI](#generative-ai)
 2. [Prompt Engineering](#prompt-engineering)
 3. [AI Agent](#ai-agent)
@@ -12,30 +13,36 @@
 9. [Agentic AI Workflow Patterns](#agentic-ai-workflow-patterns)
 10. [LangChain](#langchain)
 11. [LangGraph](#langgraph)
+12. [Forward Deployed Engineering (FDE)](#forward-deployed-engineering-fde)
 
 ---
 
 ## Generative AI
 
 ### Definition
+
 Generative AI refers to artificial intelligence systems capable of creating new content by learning patterns from training data and generating novel outputs in various formats (text, images, code, audio, video, etc.).
 
 ### Explanation
+
 Generative AI models use deep learning architectures, particularly transformer-based models, to understand input patterns and produce coherent, contextually relevant output. Unlike discriminative models that classify or predict from existing data, generative models can synthesize entirely new data that resembles the training distribution.
 
 ### Key Characteristics
+
 - **Learning from Patterns**: Trained on large datasets to internalize linguistic, visual, or domain-specific patterns
 - **Token-based Generation**: Generates output sequentially, one token/element at a time
 - **Probabilistic**: Uses probability distributions to select the next likely token
 - **Versatility**: Can perform multiple tasks without task-specific training (few-shot, zero-shot capabilities)
 
 ### Examples
+
 - Large Language Models (LLMs): GPT-4, Claude, Gemini
 - Image Generation: DALL-E, Stable Diffusion, Midjourney
 - Code Generation: GitHub Copilot, Amazon CodeWhisperer
 - Music Generation: Jukebox, MuseNet
 
 ### Applications
+
 - Content creation and copywriting
 - Code generation and development assistance
 - Customer service automation
@@ -47,28 +54,36 @@ Generative AI models use deep learning architectures, particularly transformer-b
 ## Prompt Engineering
 
 ### Definition
+
 Prompt engineering is the practice of designing and optimizing text inputs (prompts) to guide AI models toward producing desired outputs with better accuracy, relevance, and quality.
 
 ### Explanation
+
 Prompt engineering bridges the gap between user intent and model behavior. By carefully structuring queries, providing context, examples, and clear instructions, users can significantly improve the quality of AI-generated responses without retraining models.
 
 ### Core Techniques
 
 #### 1. **Clear Instructions**
+
 Specify exactly what you want the model to do with unambiguous language.
+
 ```
 Good: "Summarize this article in 3 bullet points focusing on business impact"
 Poor: "Tell me about this"
 ```
 
 #### 2. **Context Provision**
+
 Supply relevant background information to help the model understand the domain and constraints.
+
 ```
 "You are an experienced data scientist. Explain this ML concept to a business executive."
 ```
 
 #### 3. **Few-shot Prompting**
+
 Provide examples of the desired input-output pattern.
+
 ```
 Example 1: Input: "Hello" → Output: "Greeting detected"
 Example 2: Input: "How are you?" → Output: "Question detected"
@@ -76,18 +91,23 @@ Now classify: "What time is it?"
 ```
 
 #### 4. **Chain-of-Thought (CoT)**
+
 Ask the model to reason step-by-step before providing final answers.
+
 ```
 "Think through this problem step by step before giving your answer."
 ```
 
 #### 5. **Role-based Prompting**
+
 Assign a specific persona or role to the model.
+
 ```
 "Act as a senior software architect and review this design."
 ```
 
 ### Best Practices
+
 - Be specific and concise
 - Include relevant constraints (length, format, tone)
 - Use delimiter tokens (''', """, ###) to separate sections
@@ -95,6 +115,7 @@ Assign a specific persona or role to the model.
 - Test edge cases and variations
 
 ### Impact
+
 - Reduces computational costs by improving first-pass quality
 - Increases model reliability and consistency
 - Enables customization without fine-tuning
@@ -105,48 +126,56 @@ Assign a specific persona or role to the model.
 ## AI Agent
 
 ### Definition
+
 An AI Agent is an autonomous software system that perceives its environment through sensors/APIs, makes decisions using AI models, and takes actions to achieve predefined goals with minimal human intervention.
 
 ### Explanation
+
 Unlike static AI systems that respond to single queries, agents operate in a loop: observing environmental state, reasoning about options, executing actions, and learning from outcomes. Agents combine multiple capabilities—language understanding, planning, tool use, memory, and error correction—to accomplish complex, multi-step objectives.
 
 ### Key Components
 
 #### 1. **Perception**
+
 - Sensory input from environment (APIs, databases, user input)
 - Ability to interpret current state
 
 #### 2. **Reasoning Engine**
+
 - LLM or decision-making model
 - Planning and strategy formulation
 - Risk assessment
 
 #### 3. **Action/Tools**
+
 - API calls and function execution
 - Database operations
 - External service integration
 - Code execution
 
 #### 4. **Memory**
+
 - Short-term: Current conversation/task context
 - Long-term: Persistent knowledge base
 - Experience/learning from past actions
 
 #### 5. **Feedback Loop**
+
 - Action result observation
 - Error detection and correction
 - Continuous improvement
 
 ### Agent Autonomy Levels
 
-| Level | Description | Example |
-|-------|-------------|---------|
-| **Reactive** | Immediate response to stimuli | Chatbot responding to user input |
-| **Deliberative** | Plans actions based on goals | Code generation with error checking |
-| **Learning** | Adapts behavior from experience | Recommendation engines improving over time |
-| **Autonomous** | Operates with minimal intervention | Self-driving vehicles, trading bots |
+| Level                  | Description                        | Example                                    |
+| ---------------------- | ---------------------------------- | ------------------------------------------ |
+| **Reactive**     | Immediate response to stimuli      | Chatbot responding to user input           |
+| **Deliberative** | Plans actions based on goals       | Code generation with error checking        |
+| **Learning**     | Adapts behavior from experience    | Recommendation engines improving over time |
+| **Autonomous**   | Operates with minimal intervention | Self-driving vehicles, trading bots        |
 
 ### Examples
+
 - **Customer Service Agents**: Resolving issues by accessing databases and escalating as needed
 - **Coding Agents**: Writing, testing, and debugging code autonomously
 - **Research Agents**: Gathering information, summarizing, and synthesizing findings
@@ -154,6 +183,7 @@ Unlike static AI systems that respond to single queries, agents operate in a loo
 - **Data Analysis Agents**: Exploring datasets and generating insights
 
 ### Challenges
+
 - Hallucination and factual errors
 - Knowing when to ask for human help
 - Error recovery and failure modes
@@ -164,9 +194,11 @@ Unlike static AI systems that respond to single queries, agents operate in a loo
 ## RAG (Retrieval-Augmented Generation)
 
 ### Definition
+
 RAG is a hybrid AI technique that combines information retrieval from external knowledge bases with generative AI to produce more accurate, current, and contextually grounded responses.
 
 ### Explanation
+
 Rather than relying solely on an LLM's training data (which becomes outdated), RAG systems retrieve relevant documents or data from vector databases, knowledge bases, or search engines, then feed this retrieved context into the generative model. This ensures responses are grounded in current information and domain-specific knowledge.
 
 ### Architecture
@@ -186,26 +218,31 @@ Final Response (Grounded + Current + Relevant)
 ### Key Components
 
 #### 1. **Retrieval System**
+
 - **Vector Database**: Stores embeddings of documents (Pinecone, Weaviate, Milvus)
 - **Search Algorithm**: Similarity-based or keyword-based retrieval
 - **Ranking**: Prioritizes most relevant documents
 
 #### 2. **Document Processing**
+
 - Chunking: Breaking documents into manageable pieces
 - Embedding: Converting text to vector representations
 - Indexing: Organizing for efficient retrieval
 
 #### 3. **Augmentation**
+
 - Formatting retrieved context for the LLM
 - Managing context window constraints
 - Relevance filtering
 
 #### 4. **Generation**
+
 - LLM uses retrieved context as reference
 - Generates response with citations/sources
 - Synthesizes multiple retrieved documents
 
 ### Workflow Example
+
 ```
 User: "What are the latest features in Claude 5?"
 
@@ -221,6 +258,7 @@ User: "What are the latest features in Claude 5?"
 ```
 
 ### Advantages
+
 - **Accuracy**: Grounded in verified sources
 - **Currency**: Uses up-to-date information
 - **Transparency**: Can cite sources
@@ -228,6 +266,7 @@ User: "What are the latest features in Claude 5?"
 - **Domain Expertise**: Can integrate proprietary knowledge
 
 ### Applications
+
 - Question answering systems
 - Customer support automation
 - Document summarization
@@ -236,6 +275,7 @@ User: "What are the latest features in Claude 5?"
 - Technical documentation assistance
 
 ### Challenges
+
 - Retrieval quality directly impacts output quality
 - Requires maintaining current knowledge bases
 - Managing large context windows efficiently
@@ -246,9 +286,11 @@ User: "What are the latest features in Claude 5?"
 ## Context Window
 
 ### Definition
+
 A context window is the maximum amount of text (measured in tokens) that an LLM can process and consider in a single request, including the user's input, system instructions, and previous conversation history.
 
 ### Explanation
+
 Language models process text sequentially using a fixed-size window of attention. This window determines how much information the model can "see" and reference when generating responses. Larger context windows enable processing of longer documents, richer conversation history, and more complex tasks.
 
 ### Context Window Composition
@@ -269,15 +311,16 @@ Language models process text sequentially using a fixed-size window of attention
 
 ### Model Context Windows
 
-| Model | Context Window |
-|-------|-----------------|
+| Model             | Context Window               |
+| ----------------- | ---------------------------- |
 | Claude 3.5 Sonnet | 200,000 tokens (~150K words) |
-| Claude 3 Opus | 200,000 tokens (~150K words) |
-| GPT-4 Turbo | 128,000 tokens |
-| GPT-4 | 8,000 - 32,000 tokens |
-| Haiku | 200,000 tokens |
+| Claude 3 Opus     | 200,000 tokens (~150K words) |
+| GPT-4 Turbo       | 128,000 tokens               |
+| GPT-4             | 8,000 - 32,000 tokens        |
+| Haiku             | 200,000 tokens               |
 
 ### Token Counting
+
 - Average word ≈ 1.3 tokens
 - Average page ≈ 500-750 tokens
 - Average code file ≈ 2,000-5,000 tokens
@@ -285,17 +328,20 @@ Language models process text sequentially using a fixed-size window of attention
 ### Practical Implications
 
 #### What Fits in Context?
+
 - **Large**: Entire books (100K+ pages)
 - **Medium**: Multiple documents + conversation history
 - **Small**: Single document + recent history
 
 #### Optimization Strategies
+
 - Summarize old conversation turns
 - Retrieve relevant information (RAG)
 - Compress repetitive content
 - Remove unnecessary formatting
 
 ### Limitations
+
 - **Finite Resource**: Fixed maximum prevents processing unlimited data
 - **Cost**: Input tokens incur processing costs
 - **Latency**: Larger contexts require more computation
@@ -304,21 +350,22 @@ Language models process text sequentially using a fixed-size window of attention
 ### Usage Patterns
 
 1. **Single Document Analysis**: Load entire document in context
+
    ```
    Analyze this annual report [200-page PDF fits in context]
    ```
-
 2. **Document Comparison**: Multiple documents in single request
+
    ```
    Compare these 5 research papers [all fit in context]
    ```
-
 3. **Conversation with History**: Maintain full chat history
+
    ```
    [System + 50 previous turns + current message = within context]
    ```
-
 4. **Code Review**: Analyze multiple code files together
+
    ```
    Review these 3 files and their dependencies
    ```
@@ -328,9 +375,11 @@ Language models process text sequentially using a fixed-size window of attention
 ## Multi-turn Conversations
 
 ### Definition
+
 Multi-turn conversations refer to extended dialogues where the AI maintains context across multiple exchanges, allowing for iterative refinement, follow-up questions, and building understanding over a series of interactions.
 
 ### Explanation
+
 Multi-turn conversations enable a stateful, iterative interaction pattern where each turn builds on previous exchanges. The model references earlier messages to provide coherent, contextually-aware responses, enabling users to clarify, build upon, and refine ideas over multiple interactions.
 
 ### Conversation Structure
@@ -339,22 +388,24 @@ Multi-turn conversations enable a stateful, iterative interaction pattern where 
 Turn 1: User Query 1
         ↓
         AI Response 1 (stored in context)
-        
+    
 Turn 2: User Query 2 (references Turn 1)
         ↓
         AI Response 2 (maintains history)
-        
+    
 Turn 3: User Query 3 (references Turns 1-2)
         ↓
         AI Response 3 (full conversation available)
-        
+    
 ...continues
 ```
 
 ### Key Characteristics
 
 #### 1. **Context Preservation**
+
 Model remembers all previous messages in conversation
+
 ```
 Turn 1: "I'm building a web app with React"
 Turn 2: "How do I handle state?" → Model knows it's about React
@@ -362,7 +413,9 @@ Turn 3: "What about async operations?" → Continues React context
 ```
 
 #### 2. **Iterative Refinement**
+
 Users can clarify and build on responses
+
 ```
 Turn 1: Generate code outline
 Turn 2: "Make it more performant"
@@ -371,14 +424,18 @@ Turn 4: "Format according to our style guide"
 ```
 
 #### 3. **Anaphora Resolution**
+
 Model resolves pronouns and references to previous context
+
 ```
 Turn 1: User mentions "API authentication"
 Turn 2: User: "How do I test it?" → "it" = API authentication
 ```
 
 #### 4. **Conversation State**
+
 System maintains understanding of:
+
 - Topic and subtopic hierarchy
 - User preferences and style
 - Decisions made in earlier turns
@@ -387,6 +444,7 @@ System maintains understanding of:
 ### Common Patterns
 
 #### **Exploratory Dialogue**
+
 ```
 T1: "Explain machine learning basics"
 T2: "What's the difference between supervised and unsupervised?"
@@ -395,6 +453,7 @@ T4: "How do I choose between different algorithms?"
 ```
 
 #### **Debugging/Problem Solving**
+
 ```
 T1: "My code is throwing this error"
 T2: "I tried X, now I get this error"
@@ -403,6 +462,7 @@ T4: "Can you provide a complete example?"
 ```
 
 #### **Creative Collaboration**
+
 ```
 T1: "Write me a poem about nature"
 T2: "Make it more humorous"
@@ -411,6 +471,7 @@ T4: "Perfect! Now write one about technology in the same style"
 ```
 
 #### **Learning/Teaching**
+
 ```
 T1: "What is quantum computing?"
 T2: "Explain entanglement in simpler terms"
@@ -421,6 +482,7 @@ T4: "What's an example of a problem quantum computers excel at?"
 ### Technical Implementation
 
 #### **Message History Management**
+
 ```json
 {
   "messages": [
@@ -434,11 +496,13 @@ T4: "What's an example of a problem quantum computers excel at?"
 ```
 
 #### **Context Budget**
+
 - Each previous message consumes tokens
 - Older messages may be summarized/dropped if approaching limit
 - Priority given to recent exchanges and system instructions
 
 ### Advantages
+
 - **Better Understanding**: Model can ask clarifying questions
 - **Iterative Improvement**: Refine results over multiple turns
 - **Efficiency**: Build on previous responses rather than restarting
@@ -446,6 +510,7 @@ T4: "What's an example of a problem quantum computers excel at?"
 - **Complex Tasks**: Decompose large problems into steps
 
 ### Challenges
+
 - **Token Consumption**: History grows, using more context tokens
 - **Forgotten Context**: Very long conversations may lose early context
 - **Inconsistency**: Model might contradict earlier statements
@@ -456,15 +521,19 @@ T4: "What's an example of a problem quantum computers excel at?"
 ## Context Compaction
 
 ### Definition
+
 Context compaction is a technique to reduce the token consumption of conversation history or long documents while preserving essential information, enabling longer conversations within fixed context windows.
 
 ### Explanation
+
 As multi-turn conversations grow, the accumulated message history consumes increasing tokens, leaving fewer tokens for new input and output. Context compaction intelligently reduces this overhead through summarization, filtering, and hierarchical compression while maintaining semantic coherence and necessary details.
 
 ### Compaction Strategies
 
 #### 1. **Summarization**
+
 Replace verbose exchanges with concise summaries
+
 ```
 Original (500 tokens):
 T1: User asks detailed question about Python async programming
@@ -478,7 +547,9 @@ Key points covered: asyncio fundamentals, event loop mechanics, practical patter
 ```
 
 #### 2. **Filtering/Pruning**
+
 Remove less important messages while keeping critical information
+
 ```
 Keep:
 - System instructions
@@ -494,7 +565,9 @@ Remove:
 ```
 
 #### 3. **Hierarchical Abstraction**
+
 Organize conversation into levels of detail
+
 ```
 Level 1 (Essential): User goals and key decisions
 Level 2 (Important): Major sub-topics and approaches
@@ -502,7 +575,9 @@ Level 3 (Detail): Specific examples and code snippets
 ```
 
 #### 4. **Progressive Summarization**
+
 Create "checkpoint" summaries at intervals
+
 ```
 Messages 1-10: Detail
 Summary: Condensed overview
@@ -512,7 +587,9 @@ Messages 21-current: Detail (most recent, preserved)
 ```
 
 #### 5. **Selective History**
+
 Maintain only messages relevant to current task
+
 ```
 Current goal: "Generate database schema"
 Relevant context: Earlier discussion of requirements
@@ -540,29 +617,32 @@ Preserved: Essential context and recent work
 
 ### When to Use Compaction
 
-| Scenario | Trigger |
-|----------|---------|
-| **Long Research** | 20+ turns on complex topic |
-| **Debugging Session** | Multiple failed attempts documented |
-| **Iterative Refinement** | 30+ rounds of polish and revision |
-| **Memory Constraints** | Approaching 80% of context window |
-| **Agent Operations** | Long-running agentic workflows |
+| Scenario                       | Trigger                             |
+| ------------------------------ | ----------------------------------- |
+| **Long Research**        | 20+ turns on complex topic          |
+| **Debugging Session**    | Multiple failed attempts documented |
+| **Iterative Refinement** | 30+ rounds of polish and revision   |
+| **Memory Constraints**   | Approaching 80% of context window   |
+| **Agent Operations**     | Long-running agentic workflows      |
 
 ### Automatic vs. Manual
 
 #### Automatic Compaction
+
 - LLM summarizes on trigger
 - Transparent to user
 - Risk of losing important details
 - Implementation: Check token count, auto-summarize if >80%
 
 #### Manual Compaction
+
 - User explicitly requests "summarize our discussion"
 - More control and transparency
 - Better preservation of details
 - Requires user awareness and action
 
 ### Tools and Implementations
+
 - **LLM-based**: Ask Claude to summarize conversation
 - **Semantic**: Group messages by topic, keep representatives
 - **Extractive**: Pull key sentences from messages
@@ -570,26 +650,29 @@ Preserved: Essential context and recent work
 
 ### Trade-offs
 
-| Benefit | Cost |
-|---------|------|
-| More tokens for new content | Possible information loss |
-| Longer conversations possible | Reduced historical detail |
-| Lower API costs | Less precise reference |
-| Faster processing | Potential for contradictions |
+| Benefit                       | Cost                         |
+| ----------------------------- | ---------------------------- |
+| More tokens for new content   | Possible information loss    |
+| Longer conversations possible | Reduced historical detail    |
+| Lower API costs               | Less precise reference       |
+| Faster processing             | Potential for contradictions |
 
 ---
 
 ## Agentic AI Design
 
 ### Definition
+
 Agentic AI Design is a systems approach to building AI applications where autonomous agents execute goal-directed behavior using reasoning, planning, memory, and tool-use capabilities, rather than simple input-output mappings.
 
 ### Explanation
+
 Traditional AI systems follow a linear path: input → process → output. Agentic AI design introduces intelligence at each stage: understanding goals, planning approaches, deciding when to use tools, learning from outcomes, and adapting strategies. It shifts from "answering questions" to "accomplishing tasks."
 
 ### Core Design Principles
 
 #### 1. **Autonomy with Guardrails**
+
 - Agent operates independently within constraints
 - Can make decisions and take actions without per-action approval
 - Predefined boundaries prevent harmful actions
@@ -603,6 +686,7 @@ Not Autonomous: "I'll only write files if you approve each one"
 ```
 
 #### 2. **Explicit Goal Representation**
+
 - Clear, measurable objectives
 - Hierarchical sub-goals
 - Success criteria defined upfront
@@ -616,6 +700,7 @@ Sub-goals:
 ```
 
 #### 3. **Tool-Augmented Reasoning**
+
 - Agent uses domain-specific tools effectively
 - Knows when and how to use available tools
 - Understands tool limitations
@@ -633,6 +718,7 @@ then process results using Python, then search for context."
 ```
 
 #### 4. **Iterative Refinement**
+
 - Agent learns from tool outputs
 - Adjusts strategy based on results
 - Self-corrects and retries
@@ -646,6 +732,7 @@ Try 3: Use results for final response
 ```
 
 #### 5. **Memory and Learning**
+
 - Maintains state across interactions
 - Learns from past successes and failures
 - Applies learnings to new situations
@@ -700,6 +787,7 @@ Memory Types:
 ### Design Considerations
 
 #### **Scope Definition**
+
 - What decisions can the agent make alone?
 - What requires human approval?
 - What are hard boundaries?
@@ -711,6 +799,7 @@ Agent MUST ASK: Before significant infrastructure changes
 ```
 
 #### **Error Handling**
+
 - Expected failure modes
 - Recovery strategies
 - Escalation paths
@@ -722,18 +811,21 @@ Error 3: Permission denied → Escalate to human
 ```
 
 #### **Safety and Control**
+
 - Sandbox isolation
 - Rate limiting
 - Audit trails
 - Kill switches
 
 #### **Transparency**
+
 - Explain reasoning
 - Document tool choices
 - Show step-by-step progress
 - Provide reasoning justifications
 
 ### Common Pitfalls
+
 - **Over-delegation**: Giving agent too much autonomy
 - **Poor Tooling**: Agent can't accomplish task with available tools
 - **Vague Goals**: Unclear success criteria lead to wrong solutions
@@ -745,9 +837,11 @@ Error 3: Permission denied → Escalate to human
 ## Agentic AI Workflow Patterns
 
 ### Definition
+
 Agentic AI Workflow Patterns are recurring architectural templates and interaction patterns that define how AI agents process information, make decisions, and execute tasks in common scenarios.
 
 ### Explanation
+
 Just as software design patterns solve recurring problems, agentic workflow patterns provide proven solutions to common agent challenges. These patterns define the flow of information, decision points, tool usage, and error handling across different types of tasks.
 
 ### Core Workflow Patterns
@@ -765,7 +859,7 @@ Perception Phase:
   3. Identify constraints and resources
   
          ↓
-         
+     
 Reasoning Phase:
   1. Analyze situation
   2. Generate possible actions
@@ -773,7 +867,7 @@ Reasoning Phase:
   4. Select best approach
   
          ↓
-         
+     
 Action Phase:
   1. Execute selected action
   2. Observe results
@@ -782,6 +876,7 @@ Action Phase:
 ```
 
 #### Example: Code Generation Agent
+
 ```
 Perception: Receive user requirements
   - Analyze: language, complexity, constraints
@@ -819,6 +914,7 @@ Observation: [Analysis complete]
 ```
 
 #### Benefits
+
 - **Explainability**: Thought process visible to user
 - **Flexibility**: Reasoning can adapt to observations
 - **Error Recovery**: Thinks about failures
@@ -844,6 +940,7 @@ Return Response
 ```
 
 #### Example: Report Generation
+
 ```
 Tool 1: Extract data from source system
 Tool 2: Validate data completeness
@@ -878,6 +975,7 @@ Main Goal: "Improve application performance"
 ```
 
 #### Benefits
+
 - **Manageability**: Large problems become tractable
 - **Parallelization**: Independent subtasks run in parallel
 - **Observability**: Clear progress tracking
@@ -903,6 +1001,7 @@ Does it meet criteria?
 ```
 
 #### Example: Code Generation
+
 ```
 Generation 1: Create basic implementation
 Evaluation: Check for common issues
@@ -924,12 +1023,13 @@ Orchestrator Agent
        ├─ Analysis Agent: Performs calculations
        ├─ Validation Agent: Checks correctness
        └─ Formatting Agent: Prepares output
-       
+   
 [Each agent reports results to orchestrator]
 [Orchestrator synthesizes final response]
 ```
 
 #### Use Cases
+
 - Distributed problem-solving
 - Specialized domain expertise
 - Parallel task execution
@@ -957,6 +1057,7 @@ Store Results and Insights in Memory
 ```
 
 #### Memory Types
+
 - **Episodic**: Specific past events
 - **Semantic**: General knowledge
 - **Procedural**: How to do things
@@ -985,6 +1086,7 @@ Log and Learn
 ```
 
 #### Example: API Call Pattern
+
 ```
 try:
   Call API
@@ -1022,6 +1124,7 @@ Agent Execution Zone
 ```
 
 #### Decision Escalation Criteria
+
 - High-impact decisions (>threshold cost/risk)
 - Ambiguous requirements
 - Conflicting objectives
@@ -1055,28 +1158,31 @@ Benefits:
 
 ### Selection Guide
 
-| Pattern | Best For | Complexity |
-|---------|----------|-----------|
-| **PRA** | Simple autonomy | Low |
-| **ReAct** | Explainability | Low-Medium |
-| **Tool Chain** | Sequential tasks | Medium |
-| **Task Decomposition** | Complex problems | High |
-| **Refinement Loop** | Quality optimization | Medium |
-| **Multi-Agent** | Specialized expertise | High |
-| **Memory-Augmented** | Learning systems | High |
-| **Exception Handling** | Robust systems | Medium |
-| **Human-in-Loop** | High-stakes decisions | Medium |
-| **Streaming** | User experience | Low-Medium |
+| Pattern                      | Best For              | Complexity |
+| ---------------------------- | --------------------- | ---------- |
+| **PRA**                | Simple autonomy       | Low        |
+| **ReAct**              | Explainability        | Low-Medium |
+| **Tool Chain**         | Sequential tasks      | Medium     |
+| **Task Decomposition** | Complex problems      | High       |
+| **Refinement Loop**    | Quality optimization  | Medium     |
+| **Multi-Agent**        | Specialized expertise | High       |
+| **Memory-Augmented**   | Learning systems      | High       |
+| **Exception Handling** | Robust systems        | Medium     |
+| **Human-in-Loop**      | High-stakes decisions | Medium     |
+| **Streaming**          | User experience       | Low-Medium |
 
 ---
 
 ## LangChain
 
 ### Definition
+
 LangChain is an open-source Python/JavaScript framework for building applications with Large Language Models, providing abstractions, utilities, and components for chaining LLM calls with external tools and data sources.
 
 ### Explanation
+
 LangChain simplifies LLM application development by providing:
+
 - **Building Blocks**: Pre-built components for common tasks
 - **Chains**: Ways to combine LLMs with other tools and data
 - **Agents**: Framework for creating autonomous decision-making systems
@@ -1086,7 +1192,9 @@ LangChain simplifies LLM application development by providing:
 ### Core Components
 
 #### 1. **LLMs (Language Models)**
+
 Wrapper around LLM APIs with unified interface
+
 ```python
 from langchain_openai import ChatOpenAI
 from langchain_anthropic import ChatAnthropic
@@ -1100,7 +1208,9 @@ response = llm.invoke("What is machine learning?")
 ```
 
 #### 2. **Prompts and Templates**
+
 Structured prompt management
+
 ```python
 from langchain.prompts import PromptTemplate
 
@@ -1117,7 +1227,9 @@ formatted = prompt.format(question="What is RAG?")
 ```
 
 #### 3. **Chains**
+
 Combine LLMs with other components in sequences
+
 ```python
 from langchain.chains import LLMChain
 
@@ -1126,7 +1238,9 @@ result = chain.run(question="What is retrieval-augmented generation?")
 ```
 
 #### 4. **Agents**
+
 Enable LLMs to use tools and make decisions
+
 ```python
 from langchain.agents import AgentExecutor, create_react_agent
 from langchain.tools import Tool
@@ -1142,7 +1256,9 @@ result = executor.invoke({"input": "What's 45 * 12 plus latest Bitcoin price?"})
 ```
 
 #### 5. **Memory**
+
 Manage conversation history
+
 ```python
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationChain
@@ -1160,7 +1276,9 @@ conversation.run("Can you expand on what you said?")
 ```
 
 #### 6. **Retrievers and Vector Stores**
+
 Enable RAG functionality
+
 ```python
 from langchain_community.vectorstores import Chroma
 from langchain.embeddings import OpenAIEmbeddings
@@ -1174,7 +1292,9 @@ retrieved = retriever.get_relevant_documents("What is machine learning?")
 ```
 
 #### 7. **Output Parsers**
+
 Structure and validate model outputs
+
 ```python
 from langchain.output_parsers import PydanticOutputParser
 from pydantic import BaseModel, Field
@@ -1213,6 +1333,7 @@ Final Output
 ### Common Patterns
 
 #### **RAG Chain**
+
 ```python
 from langchain.chains import RetrievalQA
 
@@ -1227,6 +1348,7 @@ answer = qa.run("What's the revenue for Q4?")
 ```
 
 #### **Agentic Loop**
+
 ```python
 from langchain_openai import OpenAI
 from langchain.agents import load_tools, initialize_agent, AgentType
@@ -1243,6 +1365,7 @@ result = agent.run("What's sqrt(144) times the current Bitcoin price?")
 ```
 
 #### **Multi-step Workflow**
+
 ```python
 from langchain.chains import SimpleSequentialChain
 
@@ -1255,6 +1378,7 @@ result = sequential_chain.run("Initial input")
 ```
 
 ### Advantages
+
 - **Standardization**: Unified interface across multiple LLM providers
 - **Rapid Development**: Pre-built components accelerate development
 - **Tool Integration**: Easy connection to external APIs and databases
@@ -1262,12 +1386,14 @@ result = sequential_chain.run("Initial input")
 - **Community**: Large ecosystem of integrations and extensions
 
 ### Limitations
+
 - **Dependency Size**: Large library with many dependencies
 - **Abstraction Overhead**: Generic abstractions may add complexity
 - **Token Efficiency**: No built-in context optimization
 - **Latency**: Multiple API calls without built-in parallelization
 
 ### When to Use LangChain
+
 - ✅ Building multi-step applications
 - ✅ Need agent capabilities
 - ✅ Integrating multiple tools and APIs
@@ -1282,19 +1408,23 @@ result = sequential_chain.run("Initial input")
 ## LangGraph
 
 ### Definition
+
 LangGraph is a library for building stateful, multi-actor applications using LLMs, providing a framework for creating complex agentic systems with explicit state management and control flow.
 
 ### Explanation
+
 LangGraph extends LangChain's capabilities with a graph-based computation model where nodes represent processing steps and edges define transitions. This enables more complex agent behaviors, including cycles, branching logic, and explicit state management—capabilities limited in linear chains.
 
 ### Core Concept: State Machines for AI
 
 Traditional chains are linear:
+
 ```
 Step 1 → Step 2 → Step 3 → Result
 ```
 
 LangGraph enables complex workflows:
+
 ```
          ┌─→ Tool A ──┐
 Input ──┤            ├─→ Decision ──→ Result
@@ -1304,7 +1434,9 @@ Input ──┤            ├─→ Decision ──→ Result
 ### Key Components
 
 #### 1. **StateGraph**
+
 Defines the graph structure and state transitions
+
 ```python
 from langgraph.graph import StateGraph
 from typing import TypedDict, Annotated
@@ -1319,7 +1451,9 @@ graph = StateGraph(AgentState)
 ```
 
 #### 2. **Nodes**
+
 Processing steps that transform state
+
 ```python
 def retrieve_documents(state):
     """Node: retrieve relevant documents"""
@@ -1338,7 +1472,9 @@ graph.add_node("generate", generate_response)
 ```
 
 #### 3. **Edges**
+
 Connections defining state transitions and flow logic
+
 ```python
 # Direct edge: always transition to next node
 graph.add_edge("retrieve", "generate")
@@ -1362,7 +1498,9 @@ graph.add_conditional_edges(
 ```
 
 #### 4. **Entry and Exit Points**
+
 Define where execution starts and ends
+
 ```python
 graph.set_entry_point("retrieve")
 graph.set_finish_point("generate")
@@ -1444,6 +1582,7 @@ result = workflow.invoke({"messages": ["What is machine learning?"], "documents"
 ### Advanced Features
 
 #### **Persistence and Checkpointing**
+
 ```python
 from langgraph.checkpoint.sqlite import SqliteSaver
 
@@ -1456,6 +1595,7 @@ result = graph.invoke(input, config)  # Resumes if interrupted
 ```
 
 #### **Streaming**
+
 ```python
 # Stream events as they occur
 for event in graph.stream(input):
@@ -1463,6 +1603,7 @@ for event in graph.stream(input):
 ```
 
 #### **Human-in-the-loop**
+
 ```python
 def should_continue(state):
     """Wait for human approval"""
@@ -1476,27 +1617,29 @@ graph.add_node("human_approval", approval_node)
 
 ### Comparison: Chains vs. Graphs
 
-| Feature | LangChain Chains | LangGraph |
-|---------|------------------|-----------|
-| Flow | Linear | Graph-based |
-| Cycles | No | Yes |
-| Branching | Limited | Rich |
-| State | Implicit | Explicit |
-| Visualization | Limited | Excellent |
-| Complexity | Low-Medium | Medium-High |
-| Loops/Iteration | Workaround | Native |
-| Human-in-loop | Difficult | Built-in |
-| Debugging | Harder | Easier |
+| Feature         | LangChain Chains | LangGraph   |
+| --------------- | ---------------- | ----------- |
+| Flow            | Linear           | Graph-based |
+| Cycles          | No               | Yes         |
+| Branching       | Limited          | Rich        |
+| State           | Implicit         | Explicit    |
+| Visualization   | Limited          | Excellent   |
+| Complexity      | Low-Medium       | Medium-High |
+| Loops/Iteration | Workaround       | Native      |
+| Human-in-loop   | Difficult        | Built-in    |
+| Debugging       | Harder           | Easier      |
 
 ### Use Cases
 
 **LangChain Chains:**
+
 - Simple sequential operations
 - RAG pipeline
 - Multi-step reasoning
 - Basic tool use
 
 **LangGraph:**
+
 - Complex agents with decision logic
 - Multi-turn interactions with state
 - Workflow automation
@@ -1552,6 +1695,7 @@ result = research_agent.invoke({"query": "quantum computing applications", "sear
 ```
 
 ### Advantages
+
 - **Explicit Control**: Clear, visual representation of workflow
 - **Complex Logic**: Native support for branching, loops, and conditions
 - **State Management**: Explicit state handling reduces bugs
@@ -1560,6 +1704,7 @@ result = research_agent.invoke({"query": "quantum computing applications", "sear
 - **Persistence**: Save and resume execution
 
 ### When to Use LangGraph
+
 - ✅ Complex multi-step workflows
 - ✅ Need explicit control flow
 - ✅ Requiring state management
@@ -1572,21 +1717,299 @@ result = research_agent.invoke({"query": "quantum computing applications", "sear
 
 ---
 
+## Forward Deployed Engineering (FDE)
+
+### Definition
+Forward Deployed Engineering (FDE) is a software engineering practice where specialized technical teams are strategically embedded within organizations, departments, or operational units to actively participate in, guide, and accelerate the deployment and integration of advanced technologies—particularly AI and machine learning—into production environments and business processes.
+
+### Explanation
+FDE differs from traditional consulting or support models by emphasizing hands-on collaboration, ownership of outcomes, and deep integration with organizational workflows. FDE engineers don't just recommend solutions; they work alongside domain experts, build working systems, solve real-world problems, and transfer knowledge to ensure sustainable technological transformation.
+
+The "forward-deployed" aspect means being positioned where the technology is applied, not isolated in a separate department. This enables rapid iteration, immediate feedback, and solutions tailored to actual constraints and requirements.
+
+### Core Principles
+
+#### 1. **Deep Integration**
+- Embedded within the organization, not external consultants
+- Participate in daily workflows and decision-making
+- Build relationships and understand organizational culture
+- Access to real data, systems, and constraints
+
+#### 2. **Hands-On Development**
+- Actually build and deploy systems
+- Write production code, not just prototypes
+- Own outcomes and quality standards
+- Solve problems that emerge, not just theoretical ones
+
+#### 3. **Knowledge Transfer**
+- Train and mentor local teams
+- Build organizational capability, not dependency
+- Document systems and decisions
+- Enable self-sufficiency over time
+
+#### 4. **Iterative Collaboration**
+- Work alongside domain experts and stakeholders
+- Rapid feedback loops inform development
+- Adapt solutions based on real-world usage
+- Evolve approaches as requirements clarify
+
+#### 5. **Business-Focused Problem Solving**
+- Understand business objectives, not just technical requirements
+- Prioritize impact over elegance
+- Balance time-to-value with long-term sustainability
+- Measure success by business outcomes
+
+### FDE in AI and ML Context
+
+Forward Deployed Engineering for AI systems involves:
+
+#### **AI Integration**
+- Building LLM-based applications in production
+- Integrating generative AI into existing workflows
+- Implementing agentic systems within organizational processes
+- Deploying RAG systems with real organizational knowledge bases
+
+#### **Architecture and Patterns**
+- Designing agent workflows using agentic AI patterns
+- Selecting appropriate frameworks (LangChain, LangGraph) for use cases
+- Implementing context management strategies
+- Building scalable multi-turn conversation systems
+
+#### **Domain Expertise Application**
+- Applying prompt engineering techniques specific to business domain
+- Customizing AI systems with organizational knowledge (RAG)
+- Fine-tuning models on domain-specific data
+- Implementing safety measures and guardrails
+
+#### **Operational Deployment**
+- Moving from prototype to production systems
+- Establishing monitoring and logging
+- Setting up feedback loops for continuous improvement
+- Training teams on operational procedures
+
+### FDE Workflow
+
+```
+Phase 1: Assessment
+├─ Understand organizational goals
+├─ Audit existing systems and data
+├─ Identify high-impact use cases
+└─ Establish success metrics
+
+Phase 2: Design
+├─ Architect AI/ML solutions
+├─ Select technologies and frameworks
+├─ Design for organizational constraints
+└─ Plan knowledge transfer
+
+Phase 3: Development
+├─ Build working systems
+├─ Implement with production quality
+├─ Iterate with stakeholders
+└─ Document decisions and tradeoffs
+
+Phase 4: Deployment
+├─ Deploy to production
+├─ Monitor performance and usage
+├─ Gather feedback
+└─ Optimize based on real-world usage
+
+Phase 5: Knowledge Transfer
+├─ Train internal teams
+├─ Document systems and procedures
+├─ Establish operational runbooks
+└─ Support team independence
+
+Phase 6: Continuous Improvement
+├─ Monitor system performance
+├─ Address emerging issues
+├─ Optimize based on feedback
+└─ Plan next iterations
+```
+
+### FDE vs. Traditional Models
+
+| Aspect | FDE | Traditional Consulting | Internal Teams |
+|--------|-----|----------------------|-----------------|
+| **Deployment** | Hands-on, production-focused | Recommendations, blueprints | Understands context |
+| **Duration** | Sustained, mission-driven | Fixed engagements | Long-term, may lack expertise |
+| **Knowledge Transfer** | Systematic, ongoing | Post-delivery handoff | Often tacit, hard to transfer |
+| **Speed** | Fast iteration with real feedback | Slower due to distance | Variable, may have constraints |
+| **Accountability** | Shared ownership of outcomes | Delivery of recommendations | Full responsibility |
+| **Cost** | Higher per-hour, fewer total hours | Variable project cost | Lowest marginal cost |
+| **Risk** | Mitigated by expertise and embedding | High implementation risk | Mitigated by local knowledge |
+
+### Key Competencies for FDE Engineers
+
+#### **Technical Skills**
+- Proficiency in AI/ML frameworks and tools
+- Software architecture and system design
+- Production-grade software development
+- DevOps and deployment practices
+- Data engineering and management
+
+#### **AI-Specific Skills**
+- Prompt engineering and LLM optimization
+- RAG system design and implementation
+- Agentic AI system architecture
+- ML model selection and deployment
+- Tool integration (LangChain, LangGraph, etc.)
+
+#### **Soft Skills**
+- Communication with non-technical stakeholders
+- Understanding of business domains
+- Patience and teaching ability
+- Adaptability to organizational culture
+- Problem-solving under constraints
+
+#### **Contextual Skills**
+- Rapid learning of organizational systems
+- Understanding of workflows and pain points
+- Ability to prioritize impact over perfection
+- Strategic thinking about organizational goals
+
+### Common FDE Scenarios
+
+#### **AI Transformation Initiative**
+```
+Scenario: Company wants to leverage AI but lacks expertise
+FDE Approach:
+1. Assess current systems and data availability
+2. Identify 2-3 high-impact use cases
+3. Build POC with LLM + RAG for internal knowledge base
+4. Integrate with existing workflows (CRM, analytics, etc.)
+5. Train teams on operation and iteration
+6. Hand off with runbooks and support cadence
+```
+
+#### **Agent Development**
+```
+Scenario: Build autonomous agents for business processes
+FDE Approach:
+1. Map business processes and decision points
+2. Design agentic workflow using LangGraph
+3. Implement tools for agent actions (APIs, databases)
+4. Deploy with monitoring and safety rails
+5. Iterate on performance and reliability
+6. Enable internal team to maintain and improve
+```
+
+#### **Legacy System Modernization**
+```
+Scenario: Enhance existing systems with AI capabilities
+FDE Approach:
+1. Understand current system architecture
+2. Design integration points for AI (models, LLMs, agents)
+3. Implement incrementally, testing at each step
+4. Ensure backwards compatibility
+5. Migrate to new architecture gradually
+6. Support transition and operational stability
+```
+
+#### **Knowledge Base Implementation**
+```
+Scenario: Make organizational knowledge accessible via AI
+FDE Approach:
+1. Audit and structure existing documentation
+2. Build vector database (RAG system)
+3. Integrate with LLM for question-answering
+4. Deploy as internal tool
+5. Establish process for keeping knowledge current
+6. Train on maintenance and expansion
+```
+
+### FDE Success Metrics
+
+**Technical Metrics:**
+- System uptime and reliability
+- Latency and performance SLOs
+- Error rates and failure recovery time
+- Code quality and test coverage
+
+**Business Metrics:**
+- Adoption rate among target users
+- Time saved per transaction/task
+- Accuracy/quality improvements
+- Cost reduction or revenue impact
+
+**Organizational Metrics:**
+- Internal team capability increase
+- Reduced dependency on external resources
+- Knowledge retention and documentation
+- Ability to iterate independently
+
+**User Metrics:**
+- User satisfaction and NPS
+- Frequency of use
+- Error rates in user interactions
+- Feedback on improvements needed
+
+### Challenges in FDE
+
+**Technical Challenges:**
+- Legacy systems with limited integration points
+- Data quality and availability issues
+- Balancing innovation with stability
+- Managing technical debt while building new systems
+
+**Organizational Challenges:**
+- Change management and adoption
+- Resistance to new technologies
+- Cultural differences with deployment team
+- Knowledge transfer timing and completeness
+
+**Project Challenges:**
+- Scope creep and shifting requirements
+- Dependency on organizational stakeholders
+- Handling competing priorities
+- Managing expectations about what's possible
+
+### FDE and the AI Ontology
+
+Forward Deployed Engineering integrates all concepts in this ontology:
+
+```
+FDE Application of AI Concepts:
+
+Generative AI
+    ↓ (integrated via)
+Prompt Engineering + LLMs
+    ↓ (used in)
+AI Agents + Agentic Design
+    ↓ (organized with)
+Agentic Workflow Patterns
+    ↓ (implemented using)
+LangChain + LangGraph
+    ↓ (enhanced with)
+RAG (Retrieval-Augmented Generation)
+    ↓ (optimized via)
+Context Window Management + Compaction
+    ↓ (operated as)
+Multi-turn Conversations
+    ↓ (deployed and maintained via)
+Forward Deployed Engineering (FDE)
+```
+
+FDE provides the **integration methodology** that ensures theoretical AI concepts become practical, sustainable organizational capabilities.
+
+---
+
 ## Summary Table: Key Concepts
 
-| Concept | Purpose | Complexity | Use When |
-|---------|---------|-----------|----------|
-| **Generative AI** | Create new content | Low | Building any AI application |
-| **Prompt Engineering** | Guide AI outputs | Low | Optimizing individual requests |
-| **AI Agent** | Autonomous decision-making | Medium-High | Need task automation |
-| **RAG** | Ground AI in knowledge | Medium | Need current/accurate info |
-| **Context Window** | Input size limit | Low | Managing costs and tokens |
-| **Multi-turn** | Extended dialogue | Low | Complex problem-solving |
-| **Context Compaction** | Save tokens | Medium | Long conversations |
-| **Agentic Design** | Build agent systems | High | Complex autonomous systems |
-| **Workflow Patterns** | Proven solutions | Medium-High | Designing agent workflows |
-| **LangChain** | Build LLM apps | Medium | Rapid prototyping, multi-step |
-| **LangGraph** | Complex workflows | High | Advanced agent systems |
+| Concept                      | Purpose                    | Complexity  | Use When                       |
+| ---------------------------- | -------------------------- | ----------- | ------------------------------ |
+| **Generative AI**      | Create new content         | Low         | Building any AI application    |
+| **Prompt Engineering** | Guide AI outputs           | Low         | Optimizing individual requests |
+| **AI Agent**           | Autonomous decision-making | Medium-High | Need task automation           |
+| **RAG**                | Ground AI in knowledge     | Medium      | Need current/accurate info     |
+| **Context Window**     | Input size limit           | Low         | Managing costs and tokens      |
+| **Multi-turn**         | Extended dialogue          | Low         | Complex problem-solving        |
+| **Context Compaction** | Save tokens                | Medium      | Long conversations             |
+| **Agentic Design**     | Build agent systems        | High        | Complex autonomous systems     |
+| **Workflow Patterns**  | Proven solutions           | Medium-High | Designing agent workflows      |
+| **LangChain**          | Build LLM apps             | Medium      | Rapid prototyping, multi-step  |
+| **LangGraph**          | Complex workflows          | High        | Advanced agent systems         |
+| **FDE**                | Deploy AI in organizations | High        | Integration & production       |
 
 ---
 
@@ -1605,24 +2028,31 @@ Core Concepts
 │  ├─ RAG [Knowledge Integration]
 │  └─ Context Compaction [Efficiency]
 │
-└─ Tools and Frameworks
-   ├─ LangChain [Foundation]
-   │  └─ LangGraph [Advanced Workflows]
-   └─ RAG [Knowledge Grounding]
+├─ Tools and Frameworks
+│  ├─ LangChain [Foundation]
+│  │  └─ LangGraph [Advanced Workflows]
+│  └─ RAG [Knowledge Grounding]
+│
+└─ Deployment and Integration
+   └─ Forward Deployed Engineering (FDE) [Production Integration]
+      ├─ Integrates all AI concepts
+      ├─ Enables organizational adoption
+      ├─ Bridges theory to practice
+      └─ Ensures sustainable implementation
 ```
 
 ---
 
 ## Quick Reference Guide
 
-| Need | Concept | How |
-|------|---------|-----|
-| Better AI responses | Prompt Engineering | Structure queries, provide examples, iterate |
-| Autonomous system | AI Agent | Use reasoning, tools, memory, decision-making |
-| Accurate information | RAG | Retrieve relevant context, augment prompts |
-| Long conversations | Multi-turn + Compaction | Maintain history, compress old messages |
-| Complex workflows | Agentic AI Workflow Patterns | Use PRA, ReAct, Tool Chains, Hierarchical Decomposition |
-| Build LLM apps | LangChain | Use chains, agents, memory, retrievers |
-| Advanced agent systems | LangGraph | Define state machines, control flow, human-in-loop |
-| Manage tokens | Context Window awareness + Compaction | Monitor usage, summarize history |
-
+| Need                   | Concept                               | How                                                     |
+| ---------------------- | ------------------------------------- | ------------------------------------------------------- |
+| Better AI responses    | Prompt Engineering                    | Structure queries, provide examples, iterate            |
+| Autonomous system      | AI Agent                              | Use reasoning, tools, memory, decision-making           |
+| Accurate information   | RAG                                   | Retrieve relevant context, augment prompts              |
+| Long conversations     | Multi-turn + Compaction               | Maintain history, compress old messages                 |
+| Complex workflows      | Agentic AI Workflow Patterns          | Use PRA, ReAct, Tool Chains, Hierarchical Decomposition |
+| Build LLM apps         | LangChain                             | Use chains, agents, memory, retrievers                  |
+| Advanced agent systems | LangGraph                             | Define state machines, control flow, human-in-loop      |
+| Manage tokens          | Context Window awareness + Compaction | Monitor usage, summarize history                        |
+| Deploy in organization | Forward Deployed Engineering (FDE)   | Embed teams, build systems, transfer knowledge          |
