@@ -25,6 +25,16 @@ A structured, in-depth glossary of critical AI and software engineering concepts
 
 Each concept includes definitions, explanations, practical examples, and relationships to other concepts.
 
+### 3. **LangChain Fundamentals** (`langchain_basics.ipynb`)
+A hands-on notebook demonstrating practical LangChain implementation for building conversational AI applications:
+- **User Prompts & Message Management**: Handling user input and structuring prompts effectively
+- **Message History**: Tracking and managing conversation history for context awareness
+- **Session Management**: Maintaining state across multiple turns in chat applications
+- **Chat Application Implementation**: Building complete chat systems with context awareness
+- **Practical Code Examples**: Production-ready patterns for conversation management
+
+This notebook bridges the gap between LangChain concepts and actual implementation, providing the foundations needed to build sophisticated conversational AI systems with proper context and session management.
+
 ## 🎯 Who Should Use This?
 
 - **AI/ML Engineers** learning to deploy production-grade AI systems
