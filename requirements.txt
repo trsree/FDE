@@ -5,3 +5,8 @@ langchain
 langchain-groq
 langchain-community
 dotenv
+pypdf
+pinecone
+sentence-transformers
+openai
+scikit-learn
