@@ -5,15 +5,25 @@
 1. [Generative AI](#generative-ai)
 2. [Prompt Engineering](#prompt-engineering)
 3. [AI Agent](#ai-agent)
-4. [RAG (Retrieval-Augmented Generation)](#rag-retrieval-augmented-generation)
-5. [Context Window](#context-window)
-6. [Multi-turn Conversations](#multi-turn-conversations)
-7. [Context Compaction](#context-compaction)
-8. [Agentic AI Design](#agentic-ai-design)
-9. [Agentic AI Workflow Patterns](#agentic-ai-workflow-patterns)
-10. [LangChain](#langchain)
-11. [LangGraph](#langgraph)
-12. [Forward Deployed Engineering (FDE)](#forward-deployed-engineering-fde)
+4. Planning and Reasoning pattern
+5. Tools use Pattern
+6. [RAG (Retrieval-Augmented Generation)](#rag-retrieval-augmented-generation)
+7. [Context Window](#context-window)
+8. [Multi-turn Conversations](#multi-turn-conversations)
+9. [Context Compaction](#context-compaction)
+10. [Agentic AI Design](#agentic-ai-design)
+11. [Agentic AI Workflow Patterns](#agentic-ai-workflow-patterns)
+12. [LangChain](#langchain)
+13. [LangGraph](#langgraph)
+14. [Forward Deployed Engineering (FDE)](#forward-deployed-engineering-fde)
+15. [Few-Shot, Zero-Shot, and One-Shot Prompting](#few-shot-zero-shot-and-one-shot-prompting)
+16. [Chain-of-Thought Prompting](#chain-of-thought-prompting)
+17. Prompt Specificity and Role Prompting
+18. Prompt Chaining
+19. Constraints and Negative Prompting
+20. Iterative Refinement
+21. Temparature (Creativity Control)
+22. Prompt Injection ( include defences for system prompts)
 
 ---
 
@@ -388,15 +398,15 @@ Multi-turn conversations enable a stateful, iterative interaction pattern where 
 Turn 1: User Query 1
         ↓
         AI Response 1 (stored in context)
-    
+  
 Turn 2: User Query 2 (references Turn 1)
         ↓
         AI Response 2 (maintains history)
-    
+  
 Turn 3: User Query 3 (references Turns 1-2)
         ↓
         AI Response 3 (full conversation available)
-    
+  
 ...continues
 ```
 
@@ -859,7 +869,7 @@ Perception Phase:
   3. Identify constraints and resources
   
          ↓
-     
+   
 Reasoning Phase:
   1. Analyze situation
   2. Generate possible actions
@@ -867,7 +877,7 @@ Reasoning Phase:
   4. Select best approach
   
          ↓
-     
+   
 Action Phase:
   1. Execute selected action
   2. Observe results
@@ -1720,9 +1730,11 @@ result = research_agent.invoke({"query": "quantum computing applications", "sear
 ## Forward Deployed Engineering (FDE)
 
 ### Definition
+
 Forward Deployed Engineering (FDE) is a software engineering practice where specialized technical teams are strategically embedded within organizations, departments, or operational units to actively participate in, guide, and accelerate the deployment and integration of advanced technologies—particularly AI and machine learning—into production environments and business processes.
 
 ### Explanation
+
 FDE differs from traditional consulting or support models by emphasizing hands-on collaboration, ownership of outcomes, and deep integration with organizational workflows. FDE engineers don't just recommend solutions; they work alongside domain experts, build working systems, solve real-world problems, and transfer knowledge to ensure sustainable technological transformation.
 
 The "forward-deployed" aspect means being positioned where the technology is applied, not isolated in a separate department. This enables rapid iteration, immediate feedback, and solutions tailored to actual constraints and requirements.
@@ -1730,30 +1742,35 @@ The "forward-deployed" aspect means being positioned where the technology is app
 ### Core Principles
 
 #### 1. **Deep Integration**
+
 - Embedded within the organization, not external consultants
 - Participate in daily workflows and decision-making
 - Build relationships and understand organizational culture
 - Access to real data, systems, and constraints
 
 #### 2. **Hands-On Development**
+
 - Actually build and deploy systems
 - Write production code, not just prototypes
 - Own outcomes and quality standards
 - Solve problems that emerge, not just theoretical ones
 
 #### 3. **Knowledge Transfer**
+
 - Train and mentor local teams
 - Build organizational capability, not dependency
 - Document systems and decisions
 - Enable self-sufficiency over time
 
 #### 4. **Iterative Collaboration**
+
 - Work alongside domain experts and stakeholders
 - Rapid feedback loops inform development
 - Adapt solutions based on real-world usage
 - Evolve approaches as requirements clarify
 
 #### 5. **Business-Focused Problem Solving**
+
 - Understand business objectives, not just technical requirements
 - Prioritize impact over elegance
 - Balance time-to-value with long-term sustainability
@@ -1764,24 +1781,28 @@ The "forward-deployed" aspect means being positioned where the technology is app
 Forward Deployed Engineering for AI systems involves:
 
 #### **AI Integration**
+
 - Building LLM-based applications in production
 - Integrating generative AI into existing workflows
 - Implementing agentic systems within organizational processes
 - Deploying RAG systems with real organizational knowledge bases
 
 #### **Architecture and Patterns**
+
 - Designing agent workflows using agentic AI patterns
 - Selecting appropriate frameworks (LangChain, LangGraph) for use cases
 - Implementing context management strategies
 - Building scalable multi-turn conversation systems
 
 #### **Domain Expertise Application**
+
 - Applying prompt engineering techniques specific to business domain
 - Customizing AI systems with organizational knowledge (RAG)
 - Fine-tuning models on domain-specific data
 - Implementing safety measures and guardrails
 
 #### **Operational Deployment**
+
 - Moving from prototype to production systems
 - Establishing monitoring and logging
 - Setting up feedback loops for continuous improvement
@@ -1829,19 +1850,20 @@ Phase 6: Continuous Improvement
 
 ### FDE vs. Traditional Models
 
-| Aspect | FDE | Traditional Consulting | Internal Teams |
-|--------|-----|----------------------|-----------------|
-| **Deployment** | Hands-on, production-focused | Recommendations, blueprints | Understands context |
-| **Duration** | Sustained, mission-driven | Fixed engagements | Long-term, may lack expertise |
-| **Knowledge Transfer** | Systematic, ongoing | Post-delivery handoff | Often tacit, hard to transfer |
-| **Speed** | Fast iteration with real feedback | Slower due to distance | Variable, may have constraints |
-| **Accountability** | Shared ownership of outcomes | Delivery of recommendations | Full responsibility |
-| **Cost** | Higher per-hour, fewer total hours | Variable project cost | Lowest marginal cost |
-| **Risk** | Mitigated by expertise and embedding | High implementation risk | Mitigated by local knowledge |
+| Aspect                       | FDE                                  | Traditional Consulting      | Internal Teams                 |
+| ---------------------------- | ------------------------------------ | --------------------------- | ------------------------------ |
+| **Deployment**         | Hands-on, production-focused         | Recommendations, blueprints | Understands context            |
+| **Duration**           | Sustained, mission-driven            | Fixed engagements           | Long-term, may lack expertise  |
+| **Knowledge Transfer** | Systematic, ongoing                  | Post-delivery handoff       | Often tacit, hard to transfer  |
+| **Speed**              | Fast iteration with real feedback    | Slower due to distance      | Variable, may have constraints |
+| **Accountability**     | Shared ownership of outcomes         | Delivery of recommendations | Full responsibility            |
+| **Cost**               | Higher per-hour, fewer total hours   | Variable project cost       | Lowest marginal cost           |
+| **Risk**               | Mitigated by expertise and embedding | High implementation risk    | Mitigated by local knowledge   |
 
 ### Key Competencies for FDE Engineers
 
 #### **Technical Skills**
+
 - Proficiency in AI/ML frameworks and tools
 - Software architecture and system design
 - Production-grade software development
@@ -1849,6 +1871,7 @@ Phase 6: Continuous Improvement
 - Data engineering and management
 
 #### **AI-Specific Skills**
+
 - Prompt engineering and LLM optimization
 - RAG system design and implementation
 - Agentic AI system architecture
@@ -1856,6 +1879,7 @@ Phase 6: Continuous Improvement
 - Tool integration (LangChain, LangGraph, etc.)
 
 #### **Soft Skills**
+
 - Communication with non-technical stakeholders
 - Understanding of business domains
 - Patience and teaching ability
@@ -1863,6 +1887,7 @@ Phase 6: Continuous Improvement
 - Problem-solving under constraints
 
 #### **Contextual Skills**
+
 - Rapid learning of organizational systems
 - Understanding of workflows and pain points
 - Ability to prioritize impact over perfection
@@ -1871,6 +1896,7 @@ Phase 6: Continuous Improvement
 ### Common FDE Scenarios
 
 #### **AI Transformation Initiative**
+
 ```
 Scenario: Company wants to leverage AI but lacks expertise
 FDE Approach:
@@ -1883,6 +1909,7 @@ FDE Approach:
 ```
 
 #### **Agent Development**
+
 ```
 Scenario: Build autonomous agents for business processes
 FDE Approach:
@@ -1895,6 +1922,7 @@ FDE Approach:
 ```
 
 #### **Legacy System Modernization**
+
 ```
 Scenario: Enhance existing systems with AI capabilities
 FDE Approach:
@@ -1907,6 +1935,7 @@ FDE Approach:
 ```
 
 #### **Knowledge Base Implementation**
+
 ```
 Scenario: Make organizational knowledge accessible via AI
 FDE Approach:
@@ -1921,24 +1950,28 @@ FDE Approach:
 ### FDE Success Metrics
 
 **Technical Metrics:**
+
 - System uptime and reliability
 - Latency and performance SLOs
 - Error rates and failure recovery time
 - Code quality and test coverage
 
 **Business Metrics:**
+
 - Adoption rate among target users
 - Time saved per transaction/task
 - Accuracy/quality improvements
 - Cost reduction or revenue impact
 
 **Organizational Metrics:**
+
 - Internal team capability increase
 - Reduced dependency on external resources
 - Knowledge retention and documentation
 - Ability to iterate independently
 
 **User Metrics:**
+
 - User satisfaction and NPS
 - Frequency of use
 - Error rates in user interactions
@@ -1947,18 +1980,21 @@ FDE Approach:
 ### Challenges in FDE
 
 **Technical Challenges:**
+
 - Legacy systems with limited integration points
 - Data quality and availability issues
 - Balancing innovation with stability
 - Managing technical debt while building new systems
 
 **Organizational Challenges:**
+
 - Change management and adoption
 - Resistance to new technologies
 - Cultural differences with deployment team
 - Knowledge transfer timing and completeness
 
 **Project Challenges:**
+
 - Scope creep and shifting requirements
 - Dependency on organizational stakeholders
 - Handling competing priorities
@@ -1991,6 +2027,323 @@ Forward Deployed Engineering (FDE)
 ```
 
 FDE provides the **integration methodology** that ensures theoretical AI concepts become practical, sustainable organizational capabilities.
+
+---
+
+## Few-Shot, Zero-Shot, and One-Shot Prompting
+
+### Definition
+
+Few-Shot, Zero-Shot, and One-Shot Prompting are prompting strategies distinguished by how many labeled examples of the desired task are provided to the model within the prompt before asking it to perform that task on new input.
+
+### Explanation
+
+LLMs are trained on massive, diverse datasets and can generalize to new tasks at inference time without any weight updates—a capability known as in-context learning. The number of demonstrations included in the prompt determines which regime is in play: zero examples (zero-shot), one example (one-shot), or several examples (few-shot). More examples generally help the model infer the task's format, tone, and edge-case handling, at the cost of additional prompt tokens.
+
+### Zero-Shot Prompting
+
+The model is asked to perform a task with only an instruction—no examples of input/output pairs.
+
+```
+Prompt:
+"Classify the sentiment of this review as positive, negative, or neutral:
+'The battery life is disappointing but the camera is excellent.'"
+
+Model relies entirely on:
+- Pretrained knowledge of sentiment
+- Understanding of the instruction
+- No task-specific demonstration
+```
+
+**When it works well:**
+
+- Simple, well-known tasks (translation, summarization, sentiment)
+- Instructions are unambiguous
+- Model has strong general capability (e.g., Claude, GPT-4)
+
+**When it struggles:**
+
+- Unusual output formats
+- Domain-specific conventions
+- Nuanced classification boundaries
+
+### One-Shot Prompting
+
+Exactly one example is provided to illustrate the expected input-output mapping.
+
+```
+Prompt:
+"Classify the sentiment of the review.
+
+Example:
+Review: 'Fast shipping and great quality.'
+Sentiment: Positive
+
+Now classify:
+Review: 'The battery life is disappointing but the camera is excellent.'
+Sentiment:"
+```
+
+**Benefits over zero-shot:**
+
+- Clarifies exact output format (e.g., "Positive" vs "positive" vs a score)
+- Reduces ambiguity in what counts as correct
+- Minimal token overhead compared to few-shot
+
+### Few-Shot Prompting
+
+Multiple examples (typically 2-10) are provided to establish a clearer pattern.
+
+```
+Prompt:
+"Classify the sentiment of the review.
+
+Example 1:
+Review: 'Fast shipping and great quality.'
+Sentiment: Positive
+
+Example 2:
+Review: 'Arrived broken and support was unhelpful.'
+Sentiment: Negative
+
+Example 3:
+Review: 'It works as described, nothing special.'
+Sentiment: Neutral
+
+Now classify:
+Review: 'The battery life is disappointing but the camera is excellent.'
+Sentiment:"
+```
+
+**Benefits over one-shot:**
+
+- Demonstrates edge cases and boundary conditions (e.g., mixed sentiment → Neutral vs. Negative)
+- Establishes consistent formatting more reliably
+- Improves accuracy on nuanced or ambiguous tasks
+
+### Comparison Table
+
+| Aspect                   | Zero-Shot                  | One-Shot                 | Few-Shot                       |
+| ------------------------ | -------------------------- | ------------------------ | ------------------------------ |
+| **Examples given** | 0                          | 1                        | 2-10+                          |
+| **Token cost**     | Lowest                     | Low                      | Moderate-High                  |
+| **Format clarity** | Relies on model inference  | Establishes basic format | Establishes robust format      |
+| **Accuracy**       | Good for simple tasks      | Better than zero-shot    | Best for nuanced tasks         |
+| **Best for**       | Common, well-defined tasks | Format-sensitive tasks   | Complex, domain-specific tasks |
+
+### Choosing Examples for Few-Shot Prompting
+
+```
+Good example selection:
+✓ Cover diverse cases (including edge cases and boundary conditions)
+✓ Represent the actual distribution of expected inputs
+✓ Consistent formatting across all examples
+✓ Ordered thoughtfully (some models weight later examples more)
+
+Poor example selection:
+✗ All examples show the same output class (biases the model)
+✗ Inconsistent formatting between examples
+✗ Examples unrelated to actual use case
+✗ Too many examples, wasting context budget
+```
+
+### Practical Example: Structured Data Extraction
+
+```
+Zero-shot (may produce inconsistent format):
+"Extract the name, date, and amount from this invoice text."
+
+Few-shot (produces consistent, parseable output):
+"Extract name, date, and amount as JSON.
+
+Example 1:
+Text: 'Invoice for John Smith, dated 2024-03-01, total $450.00'
+Output: {"name": "John Smith", "date": "2024-03-01", "amount": 450.00}
+
+Example 2:
+Text: 'Bill to: Acme Corp, 2024-05-15, $1,200.50 due'
+Output: {"name": "Acme Corp", "date": "2024-05-15", "amount": 1200.50}
+
+Now extract:
+Text: 'Invoice for Beta LLC, dated 2024-07-22, total $89.99'
+Output:"
+```
+
+### Advantages
+
+- **No fine-tuning required**: Adapts model behavior without training
+- **Fast iteration**: Change examples instead of retraining
+- **Flexibility**: Same base model handles many tasks via different prompts
+- **Format control**: Examples constrain output structure reliably
+
+### Challenges
+
+- **Context cost**: Each example consumes tokens, adding latency/cost
+- **Example bias**: Poorly chosen examples can mislead the model
+- **Order sensitivity**: Some models are sensitive to example ordering
+- **Diminishing returns**: Beyond a certain number of examples, accuracy gains plateau
+
+### Applications
+
+- Text classification and sentiment analysis
+- Structured data extraction (JSON, CSV formatting)
+- Style transfer and tone matching
+- Named entity recognition
+- Custom output formatting for downstream systems
+
+---
+
+## Chain-of-Thought Prompting
+
+### Definition
+
+Chain-of-Thought (CoT) Prompting is a technique that elicits step-by-step intermediate reasoning from an LLM before it produces a final answer, improving performance on tasks that require multi-step logic, arithmetic, or complex decision-making.
+
+### Explanation
+
+By default, LLMs can jump directly to an answer, which works for simple tasks but often fails for problems requiring multiple reasoning steps (math word problems, logical deduction, multi-hop questions). CoT prompting instructs or demonstrates that the model should "think out loud"—decomposing the problem into intermediate steps—before committing to a final answer. This mirrors how humans solve complex problems by working through sub-steps rather than guessing the answer directly.
+
+### Zero-Shot Chain-of-Thought
+
+Simply appending a reasoning trigger phrase to the prompt, without any examples.
+
+```
+Prompt:
+"A store had 23 apples. They sold 8 and then received a delivery of 15 more.
+How many apples does the store have now?
+
+Let's think step by step."
+
+Model response:
+"1. Start with 23 apples.
+2. Sold 8, so 23 - 8 = 15 apples remain.
+3. Received 15 more, so 15 + 15 = 30 apples.
+Answer: 30 apples."
+```
+
+The phrase "Let's think step by step" (or similar) is often enough to trigger structured reasoning even without examples.
+
+### Few-Shot Chain-of-Thought
+
+Demonstrations include the reasoning trace, not just the final answer, teaching the model the expected reasoning style.
+
+```
+Prompt:
+"Q: A cafe had 12 tables. They removed 3 and added 5 more. How many tables now?
+A: Start with 12 tables. Removed 3: 12 - 3 = 9. Added 5: 9 + 5 = 14.
+   The answer is 14.
+
+Q: A warehouse had 150 boxes. They shipped 45 and received 60 new boxes.
+   How many boxes are in the warehouse now?
+A:"
+
+Model continues the pattern:
+"Start with 150 boxes. Shipped 45: 150 - 45 = 105. Received 60: 105 + 60 = 165.
+The answer is 165."
+```
+
+### Why Chain-of-Thought Works
+
+```
+Without CoT (direct answer):
+Question → [Black box reasoning] → Answer (often wrong on complex tasks)
+
+With CoT (explicit reasoning):
+Question → Step 1 → Step 2 → Step 3 → ... → Answer
+
+Benefits:
+- Each step is a smaller, more reliable sub-problem
+- Errors in intermediate steps are visible and can be caught
+- Model "commits" to intermediate facts, reducing drift
+- Mimics human problem-solving process
+```
+
+### CoT Variants
+
+#### **Self-Consistency**
+
+Generate multiple independent reasoning chains and take the majority answer.
+
+```
+Run 1: Step-by-step reasoning → Answer: 165
+Run 2: Different reasoning path → Answer: 165
+Run 3: Different reasoning path → Answer: 158 (arithmetic slip)
+
+Majority vote: 165 (selected as final answer)
+```
+
+#### **Least-to-Most Prompting**
+
+Decompose the problem into a sequence of simpler sub-problems, solving each in order.
+
+```
+Complex question: "If a train travels 60 mph for 2.5 hours, then 45 mph
+for 1.5 hours, what's the total distance and average speed?"
+
+Sub-problem 1: "How far does it travel in the first leg?" → 150 miles
+Sub-problem 2: "How far in the second leg?" → 67.5 miles
+Sub-problem 3: "What's the total distance?" → 217.5 miles
+Sub-problem 4: "What's the average speed?" → 217.5 / 4 = 54.375 mph
+```
+
+#### **Tree-of-Thought**
+
+Explore multiple reasoning branches and evaluate which path is most promising, backtracking when needed—useful for problems with several plausible approaches.
+
+### Practical Example: Business Decision
+
+```
+Prompt:
+"Our SaaS product has 1,000 customers paying $50/month, with 5% monthly churn.
+We're considering a price increase to $60/month, which we estimate would
+raise churn to 7%. Should we increase the price? Let's think step by step."
+
+Model reasoning:
+"1. Current MRR: 1,000 × $50 = $50,000
+2. Current monthly churn: 5% × 1,000 = 50 customers lost
+3. New price MRR (before churn change): 1,000 × $60 = $60,000
+4. New monthly churn: 7% × 1,000 = 70 customers lost
+5. Net new customers lost per month: 70 - 50 = 20 additional churned customers
+6. Revenue impact: Higher price offsets some churn cost—
+   compare $60,000 - (70 × $60) vs $50,000 - (50 × $50) over time
+7. Conclusion: Short-term MRR likely increases, but evaluate long-term
+   customer lifetime value impact before deciding."
+```
+
+### When to Use Chain-of-Thought
+
+**Use CoT when:**
+
+- Multi-step arithmetic or logical reasoning is required
+- The task involves multiple interdependent facts
+- Explainability of the answer matters
+- Errors in reasoning need to be auditable
+- The problem has a clear step-by-step decomposition
+
+**Skip CoT when:**
+
+- Task is simple lookup or direct classification
+- Latency is critical (CoT increases output tokens)
+- The answer doesn't benefit from decomposition
+- Token/cost budget is tightly constrained
+
+### Advantages
+
+- **Improved Accuracy**: Significant gains on math, logic, and multi-hop reasoning tasks
+- **Transparency**: Reasoning is visible and can be audited or debugged
+- **Error Localization**: Mistakes can be traced to a specific step
+- **Composability**: Works well combined with tool use (reason → decide to call a tool)
+
+### Challenges
+
+- **Increased Latency and Cost**: More output tokens per response
+- **Reasoning ≠ Correctness**: A plausible-looking chain can still reach a wrong answer
+- **Verbosity**: Not all use cases want to see the reasoning trace
+- **Prompt Sensitivity**: Effectiveness varies with phrasing and example quality
+
+### Relationship to Other Concepts
+
+Chain-of-Thought is a core technique within [Prompt Engineering](#prompt-engineering) and underpins the reasoning phase used by [AI Agents](#ai-agent) and frameworks like [LangGraph](#langgraph).
 
 ---
 
@@ -2055,4 +2408,4 @@ Core Concepts
 | Build LLM apps         | LangChain                             | Use chains, agents, memory, retrievers                  |
 | Advanced agent systems | LangGraph                             | Define state machines, control flow, human-in-loop      |
 | Manage tokens          | Context Window awareness + Compaction | Monitor usage, summarize history                        |
-| Deploy in organization | Forward Deployed Engineering (FDE)   | Embed teams, build systems, transfer knowledge          |
+| Deploy in organization | Forward Deployed Engineering (FDE)    | Embed teams, build systems, transfer knowledge          |
