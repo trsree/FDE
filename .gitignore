@@ -1,1 +1,60 @@
-.env
+# ================================
+# Forward Deployed Engineering Course – IK
+# Gitignore for Python, Jupyter, ReactLoop, Windows
+# ================================
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+*.egg
+*.log
+
+# --- Virtual environments ---
+venv/
+.env/
+env/
+.venv/
+
+# --- Jupyter Notebook ---
+.ipynb_checkpoints/
+.jupyter/
+
+# --- VS Code / IDE ---
+.vscode/
+.idea/
+*.swp
+
+# --- Node / ReactLoop ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+build/
+
+# --- OS / Editor junk ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Environment / Secrets ---
+*.env
+*.secret
+*.key
+*.pem
+
+# --- Cache / Temp ---
+*.cache/
+.cache/
+tmp/
+temp/
+
+# --- Project-specific ---
+Week1_ReActLoop/**/temp/
+Week1_ReActLoop/**/cache/
+Week1_ReActLoop/**/logs/
+
